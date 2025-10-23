@@ -1,0 +1,665 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: morphing 15s ease-in-out infinite;
+        }
+
+            .bg-gradient:nth-child(1) {
+                width: 600px;
+                height: 600px;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                top: -200px;
+                right: -200px;
+                animation-delay: 0s;
+            }
+
+            .bg-gradient:nth-child(2) {
+                width: 500px;
+                height: 500px;
+                background: linear-gradient(135deg, #ec4899, #f59e0b);
+                bottom: -150px;
+                left: -150px;
+                animation-delay: 5s;
+            }
+
+            .bg-gradient:nth-child(3) {
+                width: 400px;
+                height: 400px;
+                background: linear-gradient(135deg, #10b981, #06b6d4);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation-delay: 10s;
+            }
+
+        @@keyframes morphing {
+            0%, 100%
+
+        {
+            transform: translate(0, 0) scale(1);
+            border-radius: 50%;
+        }
+
+        33% {
+            transform: translate(100px, -100px) scale(1.2);
+            border-radius: 40% 60% 60% 40%;
+        }
+
+        66% {
+            transform: translate(-80px, 80px) scale(0.9);
+            border-radius: 60% 40% 40% 60%;
+        }
+
+        }
+
+        .navbar {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+            .nav-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 30px;
+            width: 100%;
+            height: 600px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @@keyframes slideIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #f59e0b);
+            background-size: 300% 100%;
+            animation: gradientMove 5s ease infinite;
+        }
+
+        @@keyframes gradientMove {
+            0%, 100%
+
+        {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        }
+
+        /* كارد الصورة */
+        .image-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 40px;
+            position: relative;
+        }
+
+            .image-card::after {
+                content: '';
+                position: absolute;
+                inset: 40px;
+                border-radius: 50%;
+                border: 2px dashed rgba(255, 255, 255, 0.1);
+                animation: rotate 30s linear infinite;
+            }
+
+        @@keyframes rotate {
+            from
+
+        {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+
+        }
+
+        .profile-image-container {
+            position: relative;
+            z-index: 1;
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        @@keyframes floatAnimation {
+            0%, 100%
+
+        {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-15px);
+        }
+
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            padding: 8px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            animation: rotateGradient 8s linear infinite;
+        }
+
+        @@keyframes rotateGradient {
+            from
+
+        {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+
+        }
+
+        .profile-image-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            padding: 6px;
+            background: rgba(30, 41, 59, 0.95);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+            .profile-image:hover {
+                transform: scale(1.05);
+            }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background: #10b981;
+            border: 5px solid rgba(30, 41, 59, 0.95);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @@keyframes pulse {
+            0%, 100%
+
+        {
+            transform: scale(1);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        50% {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.8);
+        }
+
+        }
+
+        .image-decoration {
+            margin-top: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* كارد البيانات */
+        .data-card {
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+            .data-card::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .data-card::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+            }
+
+            .data-card::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 10px;
+            }
+
+        .profile-header {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        @@keyframes fadeInUp {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .profile-name {
+            color: #fff;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-title {
+            color: #94a3b8;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-location {
+            color: #64748b;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            margin: 40px 0;
+            animation: fadeInUp 0.6s ease-out 0.4s both;
+        }
+
+        .about-section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease-out 0.5s both;
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+            .section-title::before {
+                content: '';
+                width: 4px;
+                height: 30px;
+                background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+                border-radius: 10px;
+            }
+
+        .about-text {
+            color: #94a3b8;
+            font-size: 17px;
+            line-height: 1.9;
+            text-align: justify;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border-right: 3px solid rgba(59, 130, 246, 0.5);
+        }
+
+        .social-section {
+            animation: fadeInUp 0.6s ease-out 0.6s both;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            padding: 18px 25px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .social-link::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .social-link:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+                border-color: #3b82f6;
+            }
+
+                .social-link:hover::before {
+                    opacity: 1;
+                }
+
+        .social-icon,
+        .social-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-icon {
+            font-size: 22px;
+        }
+
+        /* تصميم متجاوب */
+        @@media (max-width: 1200px) {
+            .cards-wrapper
+
+        {
+            grid-template-columns: 400px 1fr;
+            height: auto;
+        }
+
+        }
+
+        @@media (max-width: 992px) {
+            .cards-wrapper
+
+        {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+
+        .image-card {
+            height: 500px;
+        }
+
+        .data-card {
+            padding: 40px;
+        }
+
+        .profile-image-wrapper {
+            width: 250px;
+            height: 250px;
+        }
+
+        }
+
+        @@media (max-width: 768px) {
+            .navbar-container
+
+        {
+            flex-direction: column;
+            gap: 15px;
+            padding: 0 20px;
+        }
+
+        .main-container {
+            padding: 20px;
+        }
+
+        .image-card,
+        .data-card {
+            padding: 30px 20px;
+        }
+
+        .profile-name {
+            font-size: 36px;
+        }
+
+        .profile-title {
+            font-size: 20px;
+        }
+
+        .profile-image-wrapper {
+            width: 200px;
+            height: 200px;
+        }
+
+        .social-links {
+            grid-template-columns: 1fr;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+        <div class="bg-gradient"></div>
+        <div class="bg-gradient"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <span>🏠</span>
+                <span>الصفحة الرئيسية</span>
+            </div>
+            <a href="#" class="nav-btn">
+                <span>🚪</span>
+                <span>تسجيل الخروج</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="cards-wrapper">
+            <!-- كارد الصورة -->
+            <div class="card image-card">
+                <div class="profile-image-container">
+                    <div class="profile-image-wrapper">
+                        <div class="profile-image-inner">
+                            <img src="~/img/fatma.jpg" alt="Ahmed Hamdan" class="profile-image">
+                        </div>
+                    </div>
+                    <div class="status-indicator"></div>
+                </div>
+                <div class="image-decoration">متصل الآن ●</div>
+            </div>
+
+            <!-- كارد البيانات -->
+            <div class="card data-card">
+                <div class="profile-header">
+                    <h1 class="profile-name">أحمد حمدان</h1>
+                    <p class="profile-title">
+                        <span>💻</span>
+                        <span>مهندس برمجيات</span>
+                    </p>
+                    <p class="profile-location">
+                        <span>📍</span>
+                        <span>دبي، الإمارات العربية المتحدة</span>
+                    </p>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="about-section">
+                    <h3 class="section-title">نبذة عني</h3>
+                    <p class="about-text">
+                        مهندس برمجيات متخصص في تطوير تطبيقات الويب باستخدام أحدث التقنيات.
+                        أمتلك خبرة واسعة في بناء حلول برمجية مبتكرة وفعالة تساعد الشركات على تحقيق أهدافها الرقمية.
+                        شغوف بالتعلم المستمر ومواكبة أحدث التطورات في عالم التكنولوجيا والبرمجة.
+                        أؤمن بأن التكنولوجيا يمكن أن تحدث فرقاً حقيقياً في حياة الناس.
+                    </p>
+                </div>
+
+                <div class="social-section">
+                    <h3 class="section-title">تواصل معي</h3>
+                    <div class="social-links">
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <span class="social-icon">🐦</span>
+                            <span class="social-text">تويتر</span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link">
+                            <span class="social-icon">💼</span>
+                            <span class="social-text">لينكد إن</span>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <span class="social-icon">📸</span>
+                            <span class="social-text">إنستغرام</span>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="social-link">
+                            <span class="social-icon">💾</span>
+                            <span class="social-text">جيتهاب</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
