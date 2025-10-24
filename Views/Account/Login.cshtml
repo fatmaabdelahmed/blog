@@ -35,7 +35,7 @@
                 position: absolute;
                 border-radius: 50%;
                 opacity: 0.1;
-                animation: float 20s ease-in-out infinite;
+                animation: float 7s ease-in-out infinite;
             }
 
             body::before {
@@ -71,7 +71,12 @@
         }
 
         .login-container {
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 500px;
             z-index: 1;
         }
 
@@ -319,7 +324,7 @@
                                id="code"
                                name="code"
                                class="input-field"
-                               placeholder="أدخل الكود المكون من 6 أرقام"
+                               placeholder="أدخل الكود المكون من أرقام و حروف"
                                required
                                maxlength="6"
                                pattern="[0-9]{6}"
@@ -340,7 +345,7 @@
             }
 
             <p class="footer-text">
-                © 2024 جميع الحقوق محفوظة
+                © 2025 جميع الحقوق محفوظة
             </p>
         </div>
     </div>
